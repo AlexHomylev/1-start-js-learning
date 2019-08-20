@@ -12,8 +12,13 @@
 
  Другими словами: функция должна возвращать в неизменном виде то, что поступает ей на вход
  */
-function returnFirstArgument() {
+function returnFirstArgument(a) {
+    // eslint-disable-next-line no-console
+    console.log(a);
 }
+
+returnFirstArgument(10);
+returnFirstArgument('привет');
 
 /*
  Задание 2:
@@ -29,8 +34,23 @@ function returnFirstArgument() {
  Пример:
    sumWithDefaults(10) вернет 110
  */
+
 function sumWithDefaults(a, b) {
+    const result = a + b;
+
+    return result;
 }
+
+sumWithDefaults(10, 40);
+sumWithDefaults(2, 4);
+
+function sumWithDefault(a, b = 100) {
+    const result = a + b;
+
+    return result;
+}
+
+sumWithDefault(10);
 
 /*
  Задание 3:
@@ -41,7 +61,12 @@ function sumWithDefaults(a, b) {
    returnFnResult(() => 'привет') вернет 'привет'
  */
 function returnFnResult(fn) {
+    const result = fn();
+
+    return result;
 }
+
+returnFnResult(() => 'привет');
 
 /*
  Задание 4:
@@ -57,7 +82,19 @@ function returnFnResult(fn) {
    console.log(f()); // выведет 13
  */
 function returnCounter(number) {
+    return (function f() { 
+        return number = number + 1;
+    });
 }
+
+var f = returnCounter(10);
+
+// eslint-disable-next-line no-console
+console.log(f());
+// eslint-disable-next-line no-console
+console.log(f());
+// eslint-disable-next-line no-console
+console.log(f());
 
 /*
  Задание 5 *:
@@ -69,7 +106,16 @@ function returnCounter(number) {
    returnArgumentsArray(1, 2, 3) вернет [1, 2, 3]
  */
 function returnArgumentsArray() {
+    const argArr = [];
+
+    for (var i = 0; i < arguments.length; i++) { 
+        argArr[i] = arguments[i];
+    }
+    
+    return argArr;
 }
+
+returnArgumentsArray(1, 2, 3)
 
 /*
  Задание 6 *:
@@ -86,8 +132,22 @@ function returnArgumentsArray() {
 
    console.log(newSum()) выведет 6
  */
-function bindFunction(fn) {
+function bindFunction(fn, a, b) {
+    return (
+        function newSum() {
+            return fn(a, b);
+        }
+    );
 }
+
+function sum(a, b) {
+    return a + b;
+}
+
+var newSum = bindFunction(sum, 2, 4);
+
+// eslint-disable-next-line no-console
+console.log(newSum())
 
 export {
     returnFirstArgument,
