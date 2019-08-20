@@ -73,17 +73,16 @@ function returnArgumentsArray(...args) {
  var newSum = bindFunction(sum, 2, 4);
  console.log(newSum()) выведет 6
 */
-function bindFunction(sum, a, b) {
-  return function sum() {
-    return a + b;
+function bindFunction(fn, ...args) {
+  return function fn() {
+    return args
   }
 }
 
-function sum(a, b) {
-  return a + b;
+function sum(...args) {
+  return args;
 }
 
-var newSum = bindFunction(sum, 2, 4);
 
 export {
   returnFirstArgument,
